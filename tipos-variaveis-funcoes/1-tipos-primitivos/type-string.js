@@ -18,3 +18,17 @@ console.log(cifrao);
 console.log(aMaiusculo);
 console.log(tique);
 console.log(hiragana);
+
+
+/* Algumas outras  formas comuns de se trabalhar com strings: */
+const cidade = 'belo horizonte';
+const input = 'Belo Horizonte';
+
+// retorna false pq javaScript é uma linguagem case sensitiva
+console.log(cidade === input); // false
+
+//função que transforma todos os caracteres da string em letras minusculas.
+const inputMinusculo  = input.toLowerCase();
+
+// apartir de agora todos os caracteres são iguais. As strings são identicas.
+console.log(cidade === inputMinusculo); // true
