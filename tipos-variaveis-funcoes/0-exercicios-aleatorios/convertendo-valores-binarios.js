@@ -3,17 +3,33 @@ const readline = require('readline').createInterface({
     output: process.stdout
 });
   
-readline.question('Digite um número binário (Representado apenas por 0 e 1): ', binario => {
-    console.log(`O número digitado foi: ${binario}`);
+readline.question('Digite um número binário (Representado apenas por 0 e 1): ', numero => {
+    console.log(`O número digitado foi: ${numero}`);
     readline.close();
 
     let bigDecimal = BigInt(0);
+    let binario = true;
 
-    const arrayDigitosBinarios = binario.split("").reverse();
-    console.log(arrayDigitosBinarios);
+    const digitos = numero.split("").reverse();
+    console.log(digitos);
 
-    for (let i = 0; i < arrayDigitosBinarios.length; i++) {
-        bigDecimal += BigInt(arrayDigitosBinarios[i] * (2**i));
+    digitos.forEach( digito => {
+        if(digito > 1){
+            binario = false;
+        }
+    })
+
+    if(binario){
+        for (let i = 0; i < digitos.length; i++) {
+            bigDecimal += BigInt(digitos[i] * (2**i));
+        }
+    }else{
+        let numeroBinario = "";
+        while(numero > 0){
+            numeroBinario += numero % 2;
+        }
+
+        bigDecimal = numeroBinario;
     }
 
     console.log(bigDecimal);
