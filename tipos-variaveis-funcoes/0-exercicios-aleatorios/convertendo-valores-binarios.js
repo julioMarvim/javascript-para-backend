@@ -3,8 +3,7 @@ const readline = require('readline').createInterface({
     output: process.stdout
 });
   
-readline.question('Digite um número binário (Representado apenas por 0 e 1): ', numero => {
-    console.log(`O número digitado foi: ${numero}`);
+readline.question('Digite um número para ser convertido: ', numero => {
     readline.close();
 
     let bigDecimal = BigInt(0);
@@ -20,19 +19,24 @@ readline.question('Digite um número binário (Representado apenas por 0 e 1): '
     })
 
     if(binario){
+        console.log(`O número digitado é um binário, seu valor é: ${numero}`);
         for (let i = 0; i < digitos.length; i++) {
             bigDecimal += BigInt(digitos[i] * (2**i));
         }
     }else{
+        console.log(`O número digitado é um decimal, seu valor é: ${numero}`);
         let numeroBinario = "";
-        while(numero > 0){
-            numeroBinario += numero % 2;
+        let numeroDecimal = numero;
+
+        while(numeroDecimal > 0){
+            numeroBinario = (numeroDecimal % 2) + numeroBinario;
+            numeroDecimal = Math.floor(numeroDecimal / 2);
         }
 
         bigDecimal = numeroBinario;
     }
 
-    console.log(bigDecimal);
+    console.log("Valor apos a conversão: ", bigDecimal);
 });
 
 
